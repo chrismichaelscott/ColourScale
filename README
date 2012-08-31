@@ -1,0 +1,17 @@
+This script contains a simple Javascript class called ColorScale. One can instantiate this class with four arguments, a starting colour and an ending color - which together define the scale - and a lower and upper bound. Then, the objects .getColor(value) method will return the appropriate colour for the supplied value, relative to the bounds defined in instantiation.
+
+ColorScale will support 6 digit hexidecimal notation, including the hash (#) prefix and the rgb notation used in CSS. For example, #505050 or rgb(100, 100, 100).
+
+Usage:
+
+var scale = new ColorScale("#ffff00", "#ff0000", 0, 100);
+var color = scale.getColor(50); // This will return the string "#ff7f00".
+
+
+For creating a heatmap, for example, one might use:
+
+var data = [ {london: 56}, {leeds: 40}, {luton: 12} ]
+var scale = new ColorScale("#ffff00", "#ff0000", 0, 100);
+for (var location in data) {
+	shadeMapSegment(location, scale.getColor(data[location]));
+}
